@@ -1,0 +1,145 @@
+** sch_path:
+*+ /home/shahid/Desktop/EDA/test/DC_DC_Converter_xschem/1-10-22_xschem/DC_DC_Converter_xschem/DC_DC_Converter/Non_Overlap_Clk/Non_over_clk_TB.sch
+**.subckt Non_over_clk_TB
+V1 VIN GND pulse (0 1.8 0 1n 1n 4n 10n 0)
+V2 VDD GND 1.8
+C3 PH1 GND 30f m=1
+C1 PH2 GND 30f m=1
+x1 VDD VIN PH1 VSS PH2 Non_over_clk
+V3 VSS GND 0
+**** begin user architecture code
+
+
+.control
+tran 0.2n 25n
+plot v(VIN)
+*plot v(VOUT)
+plot v(PH1) v(PH2)
+plot v(VIN) v(PH1)
+
+* star for commenting
+.endc
+
+
+** opencircuitdesign pdks install
+.lib /home/shahid/OSPDKs/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  DC_DC_Converter/Non_Overlap_Clk/Non_over_clk.sym # of pins=5
+** sym_path:
+*+ /home/shahid/Desktop/EDA/test/DC_DC_Converter_xschem/1-10-22_xschem/DC_DC_Converter_xschem/DC_DC_Converter/Non_Overlap_Clk/Non_over_clk.sym
+** sch_path:
+*+ /home/shahid/Desktop/EDA/test/DC_DC_Converter_xschem/1-10-22_xschem/DC_DC_Converter_xschem/DC_DC_Converter/Non_Overlap_Clk/Non_over_clk.sch
+.subckt Non_over_clk  VDD CLK PH1 VSS PH2
+*.iopin VDD
+*.iopin VSS
+*.iopin CLK
+*.iopin PH1
+*.iopin PH2
+X11 VSS VDD CLK net1 Inverter
+X1 VSS VDD net7 net9 Inverter
+X2 VSS VDD net9 PH1 Inverter
+X3 VSS VDD net6 net8 Inverter
+X8 VSS VDD net8 G Inverter
+X9 VSS VDD G PH2 Inverter
+X10 VSS VDD net3 net2 Inverter_64
+X4 VSS VDD net2 net7 Inverter_64
+X5 VSS VDD net4 net6 Inverter_64
+X6 VSS VDD net5 net4 Inverter_64
+X_NOR1 VDD VSS CLK PH1 net5 NOR
+X_NOR2 VDD VSS net1 G net3 NOR
+.ends
+
+
+* expanding   symbol:  DC_DC_Converter/Inverter/Inverter.sym # of pins=4
+** sym_path:
+*+ /home/shahid/Desktop/EDA/test/DC_DC_Converter_xschem/1-10-22_xschem/DC_DC_Converter_xschem/DC_DC_Converter/Inverter/Inverter.sym
+** sch_path:
+*+ /home/shahid/Desktop/EDA/test/DC_DC_Converter_xschem/1-10-22_xschem/DC_DC_Converter_xschem/DC_DC_Converter/Inverter/Inverter.sch
+.subckt Inverter  VSS VDD VIN VOUT
+*.ipin VIN
+*.iopin VDD
+*.iopin VSS
+*.opin VOUT
+XM3 VOUT VIN VSS VSS sky130_fd_pr__nfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM4 VOUT VIN VDD VDD sky130_fd_pr__pfet_01v8 L=0.15 W=3 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+.ends
+
+
+* expanding   symbol:  DC_DC_Converter/Inverter_64X/Inverter_64.sym # of pins=4
+** sym_path:
+*+ /home/shahid/Desktop/EDA/test/DC_DC_Converter_xschem/1-10-22_xschem/DC_DC_Converter_xschem/DC_DC_Converter/Inverter_64X/Inverter_64.sym
+** sch_path:
+*+ /home/shahid/Desktop/EDA/test/DC_DC_Converter_xschem/1-10-22_xschem/DC_DC_Converter_xschem/DC_DC_Converter/Inverter_64X/Inverter_64.sch
+.subckt Inverter_64  VSS VDD VIN VOUT
+*.ipin VIN
+*.iopin VDD
+*.iopin VSS
+*.opin VOUT
+XM1 VOUT VIN net1 VSS sky130_fd_pr__nfet_01v8 L=0.15 W=0.425 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM2 VOUT VIN net2 VDD sky130_fd_pr__pfet_01v8 L=0.15 W=0.425 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM3 net2 VIN net3 VDD sky130_fd_pr__pfet_01v8 L=0.15 W=0.425 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM4 net3 VIN net4 VDD sky130_fd_pr__pfet_01v8 L=0.15 W=0.425 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM5 net4 VIN net8 VDD sky130_fd_pr__pfet_01v8 L=0.15 W=0.425 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM6 net1 VIN net5 VSS sky130_fd_pr__nfet_01v8 L=0.15 W=0.425 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM7 net5 VIN net6 VSS sky130_fd_pr__nfet_01v8 L=0.15 W=0.425 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM8 net6 VIN net7 VSS sky130_fd_pr__nfet_01v8 L=0.15 W=0.425 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM9 net7 VIN VSS VSS sky130_fd_pr__nfet_01v8 L=0.15 W=0.425 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM10 net8 VIN VDD VDD sky130_fd_pr__pfet_01v8 L=0.15 W=0.425 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+.ends
+
+
+* expanding   symbol:  DC_DC_Converter/NOR_GATE/NOR.sym # of pins=5
+** sym_path:
+*+ /home/shahid/Desktop/EDA/test/DC_DC_Converter_xschem/1-10-22_xschem/DC_DC_Converter_xschem/DC_DC_Converter/NOR_GATE/NOR.sym
+** sch_path:
+*+ /home/shahid/Desktop/EDA/test/DC_DC_Converter_xschem/1-10-22_xschem/DC_DC_Converter_xschem/DC_DC_Converter/NOR_GATE/NOR.sch
+.subckt NOR  VDD VSS A B OUT
+*.iopin VDD
+*.iopin VSS
+*.iopin A
+*.iopin B
+*.iopin OUT
+XM2 OUT A VSS VSS sky130_fd_pr__nfet_01v8 L=0.15 W=0.5 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM3 net1 A VDD VDD sky130_fd_pr__pfet_01v8 L=0.15 W=0.5 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM1 OUT B net1 VDD sky130_fd_pr__pfet_01v8 L=0.15 W=0.5 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM4 OUT B VSS VSS sky130_fd_pr__nfet_01v8 L=0.15 W=0.5 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+.ends
+
+.GLOBAL GND
+.end

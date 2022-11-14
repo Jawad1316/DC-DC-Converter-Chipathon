@@ -1,0 +1,81 @@
+** sch_path:
+*+ /home/shahid/Desktop/EDA/test/1-10-22_xschem/DC_DC_Converter_xschem/DC_DC_Converter/Delay_block_revised/delay_block_with_less_delay__without_cap.sch
+**.subckt delay_block_with_less_delay__without_cap VDD VSS VIN VOUT
+*.iopin VDD
+*.iopin VSS
+*.iopin VIN
+*.iopin VOUT
+X1 net1 VIN VDD VSS inverter_delay
+X2 net2 net1 VDD VSS inverter_delay
+X3 a 1 VDD VSS inverter_delay
+X4 net3 a VDD VSS inverter_delay
+X5 net4 net3 VDD VSS inverter_delay
+X6 b 2 VDD VSS inverter_delay
+X7 net5 b VDD VSS inverter_delay
+X8 net6 net5 VDD VSS inverter_delay
+X9 c 3 VDD VSS inverter_delay
+X10 net7 c VDD VSS inverter_delay
+X11 net8 net7 VDD VSS inverter_delay
+X12 d 4 VDD VSS inverter_delay
+X14 net9 d VDD VSS inverter_delay
+X15 net10 net9 VDD VSS inverter_delay
+X16 e 5 VDD VSS inverter_delay
+X17 net11 e VDD VSS inverter_delay
+X18 net12 net11 VDD VSS inverter_delay
+X19 f 6 VDD VSS inverter_delay
+X20 net13 f VDD VSS inverter_delay
+X21 net14 net13 VDD VSS inverter_delay
+X22 g 7 VDD VSS inverter_delay
+X23 net15 g VDD VSS inverter_delay
+X24 net16 net15 VDD VSS inverter_delay
+X25 h 8 VDD VSS inverter_delay
+X_OR1 VDD VSS 1 b net17 OR
+X_OR2 VDD VSS 3 d net18 OR
+X_OR3 VDD VSS 5 f net19 OR
+X_OR4 VDD VSS 7 h net20 OR
+X_OR5 VDD VSS net17 net18 ph1 OR
+X_OR6 VDD VSS net19 net20 net21 OR
+X_OR7 VDD VSS ph1 net21 vin2 OR
+X_OR8 VDD VSS VIN vin2 VOUT OR
+X13 1 net2 VDD VSS inverter_delay
+X26 2 net4 VDD VSS inverter_delay
+X27 3 net6 VDD VSS inverter_delay
+X28 4 net8 VDD VSS inverter_delay
+X29 5 net10 VDD VSS inverter_delay
+X30 6 net12 VDD VSS inverter_delay
+X31 7 net14 VDD VSS inverter_delay
+X32 8 net16 VDD VSS inverter_delay
+**.ends
+
+* expanding   symbol:  DC_DC_Converter/Delay_block_revised/OR_GATE/OR.sym # of pins=5
+** sym_path:
+*+ /home/shahid/Desktop/EDA/test/1-10-22_xschem/DC_DC_Converter_xschem/DC_DC_Converter/Delay_block_revised/OR_GATE/OR.sym
+** sch_path:
+*+ /home/shahid/Desktop/EDA/test/1-10-22_xschem/DC_DC_Converter_xschem/DC_DC_Converter/Delay_block_revised/OR_GATE/OR.sch
+.subckt OR  VDD VSS A B OUT
+*.iopin VDD
+*.iopin VSS
+*.iopin A
+*.iopin B
+*.iopin OUT
+XM2 net1 A VSS VSS sky130_fd_pr__nfet_01v8 L=0.15 W=0.4 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM3 net2 A VDD VDD sky130_fd_pr__pfet_01v8 L=0.15 W=0.6 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=4 m=4
+XM1 net1 B net2 VDD sky130_fd_pr__pfet_01v8 L=0.15 W=0.6 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=4 m=4
+XM4 net1 B VSS VSS sky130_fd_pr__nfet_01v8 L=0.15 W=0.4 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM5 OUT net1 VSS VSS sky130_fd_pr__nfet_01v8 L=0.15 W=0.4 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM6 OUT net1 VDD VDD sky130_fd_pr__pfet_01v8 L=0.15 W=0.6 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=2 m=2
+.ends
+
+.end

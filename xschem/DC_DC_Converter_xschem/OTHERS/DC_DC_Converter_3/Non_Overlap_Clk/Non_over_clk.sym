@@ -1,0 +1,33 @@
+v {xschem version=3.0.0 file_version=1.2 }
+G {}
+K {type=subcircuit
+format="@name @pinlist @symname"
+template="name=XM1"}
+V {}
+S {}
+E {}
+L 4 80 -100 80 -30 {}
+L 4 80 -30 180 -30 {}
+L 4 180 -100 180 -30 {}
+L 4 80 -100 180 -100 {}
+L 4 50 -60 80 -60 {}
+L 4 130 -30 130 -10 {}
+L 4 180 -50 200 -50 {}
+L 4 180 -80 200 -80 {}
+L 4 130 -120 130 -100 {}
+B 5 47.5 -62.5 52.5 -57.5 {name=CLK
+dir=inout}
+B 5 127.5 -122.5 132.5 -117.5 {name=VDD
+dir=inout}
+B 5 127.5 -12.5 132.5 -7.5 {name=VSS
+dir=inout}
+B 5 197.5 -82.5 202.5 -77.5 {name=PH1
+dir=inout}
+B 5 197.5 -52.5 202.5 -47.5 {name=PH2
+dir=inout}
+T {Non_Overlapping_Clk} 94 -64 0 0 0.15 0.15 {}
+T {VDD} 125 -95 0 0 0.1 0.1 {}
+T {VSS} 130 -40 0 0 0.1 0.1 {}
+T {CLK} 82.5 -62.5 0 0 0.1 0.1 {}
+T {PH2} 162.5 -52.5 0 0 0.1 0.1 {}
+T {PH1} 165 -82.5 0 0 0.1 0.1 {}

@@ -1,0 +1,48 @@
+** sch_path: /home/shahid/Desktop/EDA/test/xschem/current_pump_TB.sch
+**.subckt current_pump_TB
+X1 net1 OUT net3 net4 net2 current_pump_for_symbol
+V5 net1 GND pulse(0 1.8 0 10p 10p 5u 10u 0)
+V4 net2 GND pulse(0 1.8 2u 10p 10p 5u 10u 0)
+V1 net3 GND 1.8
+V2 net4 GND 0
+C1 OUT GND 2n m=1
+**** begin user architecture code
+
+
+.control
+tran 0.5u 50u
+plot i(V2)
+plot i(V1)
+.endc
+
+
+
+** opencircuitdesign pdks install
+.lib /home/shahid/OSPDKs/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  current_pump_for_symbol.sym # of pins=5
+** sym_path: /home/shahid/Desktop/EDA/test/xschem/current_pump_for_symbol.sym
+** sch_path: /home/shahid/Desktop/EDA/test/xschem/current_pump_for_symbol.sch
+.subckt current_pump_for_symbol  UP VOUT VDD VSS DN
+*.iopin VDD
+*.iopin UP
+*.iopin DN
+*.iopin VSS
+*.iopin VOUT
+R3 VDD net1 12.7 m=1
+R1 OUT VSS 10 m=1
+XM1 OUT DN OUT GND sky130_fd_pr__nfet_01v8 L=0.15 W=200 nf=10 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM2 OUT UP net1 VOUT sky130_fd_pr__pfet_01v8 L=0.15 W=600 nf=20 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+C1 OUT GND 2n m=1
+.ends
+
+.GLOBAL GND
+.end

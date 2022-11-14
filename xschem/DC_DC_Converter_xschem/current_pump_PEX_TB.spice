@@ -1,0 +1,31 @@
+** sch_path:
+*+ /home/shahid/Desktop/EDA/test/DC_DC_Converter_xschem/1-10-22_xschem/DC_DC_Converter_xschem/DC_DC_Converter/current_pump/current_pump_PEX_TB.sch
+**.subckt current_pump_PEX_TB
+C1 VOUT GND 20n m=1
+V11 UP GND pulse(1.8 0 0 0.01ns 0.01ns 3n 9ns 0)
+V3 DN GND pulse(0 1.8 6n 0.01ns 0.01ns 3n 9ns 0)
+V1 VDD GND 1.8
+V2 VSS GND 0
+X1 UP VOUT VDD VSS DN current_pump_PEX
+**** begin user architecture code
+
+** opencircuitdesign pdks install
+.lib /home/shahid/OSPDKs/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+
+
+
+.include ./Current_Pump_flatten.spice
+.control
+tran 0.1n 50n
+plot i(V2) i(V1)
+plot v(up) v(dn)
+
+*print @m.xm1.msky130_fd_pr__nfet_01v8
+.endc
+
+
+**** end user architecture code
+**.ends
+.GLOBAL GND
+.end

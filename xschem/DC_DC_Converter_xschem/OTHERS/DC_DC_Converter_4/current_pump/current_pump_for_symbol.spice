@@ -1,0 +1,40 @@
+** sch_path: /home/shahid/Desktop/EDA/test/xschem/current_pump_for_symbol.sch
+**.subckt current_pump_for_symbol VDD UP DN VSS
+*.iopin VDD
+*.iopin UP
+*.iopin DN
+*.iopin VSS
+R3 VDD net1 12.7 m=1
+R1 OUT VSS 10 m=1
+XM1 OUT DN OUT GND sky130_fd_pr__nfet_01v8 L=0.15 W=200 nf=10 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM2 OUT UP net1 VDD sky130_fd_pr__pfet_01v8 L=0.15 W=600 nf=20 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+C1 OUT GND 2n m=1
+**** begin user architecture code
+
+** opencircuitdesign pdks install
+.lib /home/shahid/OSPDKs/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+
+
+
+.control
+tran 0.5u 50u
+.probe i(R2)
+plot i(V3)
+plot i(V1)
+plot @m.xm2.msky130_fd_pr__pfet_01v8[id]
+plot @m.xm1.msky130_fd_pr__nfet_01v8[id]
+#plot v(out)
+#plot v(UP)
+#plot v(DN)
+.endc
+
+
+**** end user architecture code
+**.ends
+.GLOBAL GND
+.end

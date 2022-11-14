@@ -1,0 +1,23 @@
+** sch_path:
+*+ /home/shahid/Desktop/EDA/test/1-10-22_xschem/DC_DC_Converter_xschem/DC_DC_Converter/TOP_LEVEL/Top_Final/cap_res.sch
+**.subckt cap_res VSS OUT1
+*.iopin VSS
+*.iopin OUT1
+XC4 net4 net1 sky130_fd_pr__cap_mim_m3_1 W=3.4 L=4 MF=1 m=1
+XC7 net3 net1 sky130_fd_pr__cap_mim_m3_1 W=22 L=22.5 MF=1 m=1
+XC8 net5 net1 sky130_fd_pr__cap_mim_m3_1 W=9.8 L=9.9 MF=1 m=1
+XR11 net3 net4 VSS sky130_fd_pr__res_xhigh_po_0p35 L=18.19 mult=1 m=1
+XR12 net1 OUT1 VSS sky130_fd_pr__res_xhigh_po_0p35 L=45.9 mult=1 m=1
+XR13 net2 net1 VSS sky130_fd_pr__res_xhigh_po_0p35 L=41.4 mult=1 m=1
+XR14 net5 OUT1 VSS sky130_fd_pr__res_xhigh_po_0p35 L=1.47 mult=1 m=1
+XR1 net6 net2 VSS sky130_fd_pr__res_xhigh_po_0p35 L=41.4 mult=1 m=1
+XR2 net7 net6 VSS sky130_fd_pr__res_xhigh_po_0p35 L=41.4 mult=1 m=1
+XR3 net8 net7 VSS sky130_fd_pr__res_xhigh_po_0p35 L=41.4 mult=1 m=1
+XR4 net9 net8 VSS sky130_fd_pr__res_xhigh_po_0p35 L=41.4 mult=1 m=1
+XR5 net10 net9 VSS sky130_fd_pr__res_xhigh_po_0p35 L=41.4 mult=1 m=1
+XR6 net11 net10 VSS sky130_fd_pr__res_xhigh_po_0p35 L=41.4 mult=1 m=1
+XR7 net12 net11 VSS sky130_fd_pr__res_xhigh_po_0p35 L=41.4 mult=1 m=1
+XR8 net13 net12 VSS sky130_fd_pr__res_xhigh_po_0p35 L=41.4 mult=1 m=1
+XR9 VSS net13 VSS sky130_fd_pr__res_xhigh_po_0p35 L=41.4 mult=1 m=1
+**.ends
+.end

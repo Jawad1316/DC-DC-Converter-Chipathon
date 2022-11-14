@@ -1,0 +1,71 @@
+** sch_path:
+*+ /home/shahid/Desktop/EDA/test/1-10-22_xschem/DC_DC_Converter_xschem/DC_DC_Converter/BUFFER/BUFFER_NMOS/BUFFER_N.sch
+**.subckt BUFFER_N VDD VIN VSS VOUT
+*.iopin VDD
+*.iopin VIN
+*.iopin VSS
+*.iopin VOUT
+X7 net3 net1 VDD VSS Inverter0
+X8 net1 net2 VDD VSS Inverter1
+X79 net2 VOUT VDD VSS Inverter2
+X29 VIN net3 VDD VSS Inverter0
+D1 VSS VIN sky130_fd_pr__diode_pw2nd_05v5 area=1e12
+**.ends
+
+* expanding   symbol:  DC_DC_Converter/Inverter_0/Inverter0.sym # of pins=4
+** sym_path:
+*+ /home/shahid/Desktop/EDA/test/1-10-22_xschem/DC_DC_Converter_xschem/DC_DC_Converter/Inverter_0/Inverter0.sym
+** sch_path:
+*+ /home/shahid/Desktop/EDA/test/1-10-22_xschem/DC_DC_Converter_xschem/DC_DC_Converter/Inverter_0/Inverter0.sch
+.subckt Inverter0  VIN VOUT VDD VSS
+*.ipin VIN
+*.iopin VDD
+*.iopin VSS
+*.opin VOUT
+XM1 VOUT VIN VSS VSS sky130_fd_pr__nfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM2 VOUT VIN VDD VDD sky130_fd_pr__pfet_01v8 L=0.15 W=3 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+.ends
+
+
+* expanding   symbol:  DC_DC_Converter/Inverter_1/Inverter1.sym # of pins=4
+** sym_path:
+*+ /home/shahid/Desktop/EDA/test/1-10-22_xschem/DC_DC_Converter_xschem/DC_DC_Converter/Inverter_1/Inverter1.sym
+** sch_path:
+*+ /home/shahid/Desktop/EDA/test/1-10-22_xschem/DC_DC_Converter_xschem/DC_DC_Converter/Inverter_1/Inverter1.sch
+.subckt Inverter1  VIN VOUT VDD VSS
+*.ipin VIN
+*.iopin VDD
+*.iopin VSS
+*.opin VOUT
+XM1 VOUT VIN VSS VSS sky130_fd_pr__nfet_01v8 L=0.15 W=4 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM2 VOUT VIN VDD VDD sky130_fd_pr__pfet_01v8 L=0.15 W=12 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+.ends
+
+
+* expanding   symbol:  DC_DC_Converter/Inverter_2/Inverter2.sym # of pins=4
+** sym_path:
+*+ /home/shahid/Desktop/EDA/test/1-10-22_xschem/DC_DC_Converter_xschem/DC_DC_Converter/Inverter_2/Inverter2.sym
+** sch_path:
+*+ /home/shahid/Desktop/EDA/test/1-10-22_xschem/DC_DC_Converter_xschem/DC_DC_Converter/Inverter_2/Inverter2.sch
+.subckt Inverter2  VIN VOUT VDD VSS
+*.ipin VIN
+*.iopin VDD
+*.iopin VSS
+*.opin VOUT
+XM1 VOUT VIN VSS VSS sky130_fd_pr__nfet_01v8 L=0.15 W=4 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=10 m=10
+XM2 VOUT VIN VDD VDD sky130_fd_pr__pfet_01v8 L=0.15 W=12 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=10 m=10
+.ends
+
+.end

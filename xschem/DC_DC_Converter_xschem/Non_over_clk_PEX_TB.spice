@@ -1,0 +1,32 @@
+** sch_path:
+*+ /home/shahid/Desktop/EDA/test/DC_DC_Converter_xschem/1-10-22_xschem/DC_DC_Converter_xschem/DC_DC_Converter/Non_Overlap_Clk/Non_over_clk_PEX_TB.sch
+**.subckt Non_over_clk_PEX_TB
+V1 CLK GND pulse (0 1.8 0 1n 1n 4n 10n 0)
+V2 VDD GND 1.8
+C3 PH1 GND 30f m=1
+C1 PH2 GND 30f m=1
+V3 VSS GND 0
+XNOC1 VDD CLK PH1 VSS PH2 Non_over_clk_PEX
+**** begin user architecture code
+
+
+.include ./NOC.spice
+.control
+tran 0.2n 25n
+plot v(VIN)
+*plot v(VOUT)
+plot v(PH1) v(PH2)
+plot v(VIN) v(PH1)
+
+* star for commenting
+.endc
+
+
+** opencircuitdesign pdks install
+.lib /home/shahid/OSPDKs/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+
+**** end user architecture code
+**.ends
+.GLOBAL GND
+.end

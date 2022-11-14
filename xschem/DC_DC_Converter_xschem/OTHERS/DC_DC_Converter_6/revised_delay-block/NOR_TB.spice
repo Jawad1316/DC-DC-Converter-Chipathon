@@ -1,0 +1,51 @@
+** sch_path: /home/shahid/Desktop/EDA/test/xschem/NOR_TB.sch
+**.subckt NOR_TB
+V3 net1 GND 1.8
+V5 VINA GND pulse(0 1.8 0 10p 10p 5u 10u 0)
+V4 VINB GND pulse(0 1.8 2u 10p 10p 5u 10u 0)
+C1 VOUT GND 1p m=1
+X1 VOUT VINA net1 GND VINB NOR
+**** begin user architecture code
+
+
+.control
+tran 0.5u 50u
+plot v(VINA)
+plot v(VINB)
+plot v(VOUT)
+.endc
+
+
+
+** opencircuitdesign pdks install
+.lib /home/shahid/OSPDKs/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  NOR.sym # of pins=5
+** sym_path: /home/shahid/Desktop/EDA/test/xschem/NOR.sym
+** sch_path: /home/shahid/Desktop/EDA/test/xschem/NOR.sch
+.subckt NOR  VOUT VINA VDD VSS VINB
+*.iopin VDD
+*.iopin VSS
+*.iopin VINB
+*.iopin VINA
+*.iopin VOUT
+XM1 VOUT VINB VSS VSS sky130_fd_pr__nfet_01v8 L=0.15 W=200 nf=10 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM2 VOUT VINB net1 VDD sky130_fd_pr__pfet_01v8 L=0.15 W=600 nf=20 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM3 net1 VINA VDD VDD sky130_fd_pr__pfet_01v8 L=0.15 W=600 nf=20 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM4 VOUT VINA VSS VSS sky130_fd_pr__nfet_01v8 L=0.15 W=200 nf=10 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+.ends
+
+.GLOBAL GND
+.end

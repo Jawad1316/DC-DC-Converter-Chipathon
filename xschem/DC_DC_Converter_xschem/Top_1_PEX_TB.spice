@@ -1,0 +1,43 @@
+** sch_path:
+*+ /home/shahid/Desktop/EDA/test/DC_DC_Converter_xschem/1-10-22_xschem/DC_DC_Converter_xschem/DC_DC_Converter/TOP_LEVEL/Top_Final/Top_1_PEX_TB.sch
+**.subckt Top_1_PEX_TB
+V2 VDD GND 1.8
+V5 VSS GND 0
+V4 VREF GND 0.9
+V6 SAWTOOTH GND pwl(0 0 9.99ns 1.8 10ns 0) r=0
+I2 IBIAS1 VSS 50u
+I3 IBIAS2 VSS 50u
+L2 IL OUT1 100n m=1
+C2 OUT1 net1 3n m=1
+R8 VSS net1 40m m=1
+XM4 net2 DL OUT1 VDD sky130_fd_pr__pfet_01v8 L=0.15 W=10 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=450 m=450
+V13 DL GND pwl(0 1.8 3.5us 1.8 3.51us 0 7us 0) r=0
+R9 OUT1 VSS 40 m=1
+R10 net2 VSS 4 m=1
+XTOPA1 VDD VSS SAWTOOTH VREF IBIAS1 OUT1 IBIAS2 IL Top_1_PEX
+**** begin user architecture code
+** manual skywater pdks install (with patches applied)
+* .lib /home/shahid/OSPDKs/sky130A/libs.tech/ngspice/models/sky130.lib.spice tt
+
+** opencircuitdesign pdks install
+.lib /home/shahid/OSPDKs/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.include /home/shahid/OSPDKs/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_fd_sc_hd.spice
+
+
+
+
+.include ./TopA_flatten.spice
+.control
+
+tran 200p 8u
+plot  v(OUT1) v(DL)
+
+.endc
+
+
+**** end user architecture code
+**.ends
+.GLOBAL GND
+.end

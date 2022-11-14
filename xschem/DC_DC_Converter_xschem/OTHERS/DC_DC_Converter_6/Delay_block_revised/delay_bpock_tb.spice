@@ -1,0 +1,127 @@
+** sch_path: /home/shahid/Desktop/EDA/test/xschem/Delay_block_revised/delay_bpock_tb.sch
+**.subckt delay_bpock_tb
+V1 net1 GND 1.8
+V5 vin GND pulse(0 1.8 1.5u 10p 10p 10n 5u 0)
+C1 vout GND 100f m=1
+X1 vin vout net1 GND delay_block_with_less_delay_for_symbol
+**** begin user architecture code
+
+
+.control
+tran 0.01u 5u
+plot v(vin) v(vout)
+
+.endc
+
+
+
+** opencircuitdesign pdks install
+.lib /home/shahid/OSPDKs/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  delay_block_with_less_delay_for_symbol.sym # of pins=4
+** sym_path:
+*+ /home/shahid/Desktop/EDA/test/xschem/Delay_block_revised/delay_block_with_less_delay_for_symbol.sym
+** sch_path:
+*+ /home/shahid/Desktop/EDA/test/xschem/Delay_block_revised/delay_block_with_less_delay_for_symbol.sch
+.subckt delay_block_with_less_delay_for_symbol  VIN VOUT VDD VSS
+*.iopin VDD
+*.iopin VSS
+*.iopin VIN
+*.iopin VOUT
+X1 net1 VIN VDD VSS inverter
+X2 1 net1 VDD VSS inverter
+X3 a 1 VDD VSS inverter
+X4 net2 a VDD VSS inverter
+X5 2 net2 VDD VSS inverter
+X6 b 2 VDD VSS inverter
+X7 net3 b VDD VSS inverter
+X8 3 net3 VDD VSS inverter
+X9 c 3 VDD VSS inverter
+X10 net4 c VDD VSS inverter
+X11 4 net4 VDD VSS inverter
+X12 d 4 VDD VSS inverter
+X13 VOUT net5 VDD VSS inverter
+C1 net2 GND 400f m=1
+C2 net1 GND 400f m=1
+C3 net3 GND 400f m=1
+C4 net4 GND 400f m=1
+X14 net6 d VDD VSS inverter
+X15 5 net6 VDD VSS inverter
+X16 e 5 VDD VSS inverter
+X17 net7 e VDD VSS inverter
+X18 6 net7 VDD VSS inverter
+X19 f 6 VDD VSS inverter
+X20 net8 f VDD VSS inverter
+X21 7 net8 VDD VSS inverter
+X22 g 7 VDD VSS inverter
+X23 net9 g VDD VSS inverter
+X24 8 net9 VDD VSS inverter
+X25 h 8 VDD VSS inverter
+C5 net7 GND 400f m=1
+C6 net6 GND 400f m=1
+C7 net8 GND 400f m=1
+C8 net9 GND 400f m=1
+X50 net10 net11 VDD VSS inverter
+X51 net12 net13 VDD VSS inverter
+X52 ph1 net14 VDD VSS inverter
+X53 net15 net16 VDD VSS inverter
+X54 net17 net18 VDD VSS inverter
+X55 ph2 net19 VDD VSS inverter
+X58 vin2 net20 VDD VSS inverter
+X62 net5 VIN VDD VSS vin2 NOR
+X63 net11 1 VDD VSS b NOR
+X64 net13 3 VDD VSS d NOR
+X65 net14 net10 VDD VSS net12 NOR
+X66 net16 5 VDD VSS f NOR
+X67 net18 7 VDD VSS h NOR
+X68 net19 net15 VDD VSS net17 NOR
+X71 net20 ph1 VDD VSS ph2 NOR
+.ends
+
+
+* expanding   symbol:  inverter.sym # of pins=4
+** sym_path: /home/shahid/Desktop/EDA/test/xschem/Delay_block_revised/inverter.sym
+** sch_path: /home/shahid/Desktop/EDA/test/xschem/Delay_block_revised/inverter.sch
+.subckt inverter  VOUT VIN VDD VSS
+*.iopin VDD
+*.iopin VOUT
+*.iopin VSS
+*.iopin VIN
+XM1 VOUT VIN VSS VSS sky130_fd_pr__nfet_01v8 L=0.15 W=4 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM2 VOUT VIN VDD VDD sky130_fd_pr__pfet_01v8 L=0.15 W=12 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+.ends
+
+
+* expanding   symbol:  NOR.sym # of pins=5
+** sym_path: /home/shahid/Desktop/EDA/test/xschem/Delay_block_revised/NOR.sym
+** sch_path: /home/shahid/Desktop/EDA/test/xschem/Delay_block_revised/NOR.sch
+.subckt NOR  VOUT VINA VDD VSS VINB
+*.iopin VDD
+*.iopin VSS
+*.iopin VINB
+*.iopin VINA
+*.iopin VOUT
+XM1 VOUT VINB VSS VSS sky130_fd_pr__nfet_01v8 L=0.15 W=200 nf=10 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM2 VOUT VINB net1 VDD sky130_fd_pr__pfet_01v8 L=0.15 W=600 nf=20 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM3 net1 VINA VDD VDD sky130_fd_pr__pfet_01v8 L=0.15 W=600 nf=20 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM4 VOUT VINA VSS VSS sky130_fd_pr__nfet_01v8 L=0.15 W=200 nf=10 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+.ends
+
+.GLOBAL GND
+.end

@@ -1,0 +1,45 @@
+** sch_path:
+*+ /home/shahid/Desktop/EDA/test/DC_DC_Converter_xschem/1-10-22_xschem/DC_DC_Converter_xschem/DC_DC_Converter/TOP_LEVEL/Top_Final/Top_PEX_TB.sch
+**.subckt Top_PEX_TB
+I0 IBIAS1 GND 50u
+V2 VDD GND 1.8
+V5 VSS GND 0
+V4 VREF GND 0.9
+I1 IBIAS2 GND 50u
+V6 SAWTOOTH GND pwl(0 0 9.99ns 1.8 10ns 0) r=0
+V3 VH GND 1.05
+V7 VL GND 0.95
+I2 BIAS3 GND 50u
+I3 BIAS4 GND 50u
+L2 IL OUT 100n m=1
+C2 OUT net1 3n m=1
+R8 VSS net1 40m m=1
+XM4 net2 DL OUT VDD sky130_fd_pr__pfet_01v8 L=0.15 W=10 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=450 m=450
+V13 DL GND pwl(0 1.8 3.5us 1.8 3.51us 0 7us 0) r=0
+R9 OUT VSS 40 m=1
+R10 net2 VSS 4 m=1
+XTopZ1 VDD VSS VREF IL VH IBIAS1 VL IBIAS2 ENABLE BIAS3 OUT BIAS4 SAWTOOTH Top_PEX
+V1 ENABLE GND 1.8
+**** begin user architecture code
+
+
+.include ./Top.spice
+.control
+tran 100p 8u
+plot v(OUT) v(VH) v(VL) v(ENABLE) v(DL)
+.endc
+
+
+** manual skywater pdks install (with patches applied)
+* .lib /home/shahid/OSPDKs/sky130A/libs.tech/ngspice/models/sky130.lib.spice tt
+
+** opencircuitdesign pdks install
+.lib /home/shahid/OSPDKs/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.include /home/shahid/OSPDKs/sky130A/libs.ref/sky130_fd_sc_hd/spice/sky130_fd_sc_hd.spice
+
+**** end user architecture code
+**.ends
+.GLOBAL GND
+.end

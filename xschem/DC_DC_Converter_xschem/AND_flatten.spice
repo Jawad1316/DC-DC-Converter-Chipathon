@@ -1,0 +1,16 @@
+* NGSPICE file created from AND_flatten.ext - technology: sky130A
+
+.subckt AND_PEX VDD VSS A B OUT
+X0 OUT a_452_n106# VDD VDD sky130_fd_pr__pfet_01v8 ad=3.48e+11p pd=3.56e+06u as=1.044e+12p ps=1.068e+07u w=600000u l=150000u
+X1 OUT a_452_n106# VDD VDD sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=600000u l=150000u
+X2 VDD B a_452_n106# VDD sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=6.96e+11p ps=7.12e+06u w=600000u l=150000u
+X3 a_540_n106# A a_452_n106# VSS sky130_fd_pr__nfet_01v8 ad=4.872e+11p pd=5.68e+06u as=2.436e+11p ps=2.84e+06u w=420000u l=150000u
+X4 VSS B a_540_n106# VSS sky130_fd_pr__nfet_01v8 ad=3.654e+11p pd=4.26e+06u as=0p ps=0u w=420000u l=150000u
+X5 VDD B a_452_n106# VDD sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=600000u l=150000u
+X6 OUT a_452_n106# VSS VSS sky130_fd_pr__nfet_01v8 ad=1.218e+11p pd=1.42e+06u as=0p ps=0u w=420000u l=150000u
+X7 VDD A a_452_n106# VDD sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=600000u l=150000u
+X8 a_540_n106# A a_452_n106# VSS sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=420000u l=150000u
+X9 VSS B a_540_n106# VSS sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=420000u l=150000u
+X10 VDD A a_452_n106# VDD sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=600000u l=150000u
+.ends
+

@@ -1,0 +1,20 @@
+** sch_path:
+*+ /home/shahid/Desktop/EDA/test/1-10-22_xschem/DC_DC_Converter_xschem/DC_DC_Converter/Folded_OPAMP/OPAMP1.sch
+**.subckt OPAMP1 BIAS1 VSS VDD BIAS2
+*.iopin BIAS1
+*.iopin VSS
+*.iopin VDD
+*.iopin BIAS2
+XM13 net1 net1 BIAS2 VSS sky130_fd_pr__nfet_01v8 L=0.9 W=5 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM15 BIAS2 BIAS2 VSS VSS sky130_fd_pr__nfet_01v8 L=0.9 W=5 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM1 BIAS1 BIAS1 VDD VDD sky130_fd_pr__pfet_01v8 L=0.9 W=8 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XR1 net1 VDD VSS sky130_fd_pr__res_high_po_0p35 L=1 mult=1 m=1
+XR2 VSS net1 VSS sky130_fd_pr__res_high_po_0p35 L=1 mult=1 m=1
+**.ends
+.end
